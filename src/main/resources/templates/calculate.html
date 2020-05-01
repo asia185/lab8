@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>MiniMatlab 0.1 beta</title>
+    <meta charset="UTF-8" />
+    <style>
+        input.error {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<section layout:fragment="content">
+    <div>
+        <h2>Power feature (płatny toolbox)</h2>
+        <form action="/calculate" method="post" th:object="${calculatorForm}">
+            <div>
+            x = <input type="text" th:field="*{x}" th:errorClass="error" />
+            <span th:if="${#fields.hasErrors('x')}" th:errors="*{x}">Błędne dane</span>
+            </div>
+            <div>
+            y = <input type="text" th:field="*{y}" th:errorClass="error"/>
+            <span th:if="${#fields.hasErrors('y')}" th:errors="*{y}">Błędne dane</span>
+            </div>
+            <div>
+                <select name="operation">
+                    <option selected="true">+</option>
+                    <option>-</option>
+                    <option>*</option>
+                </select>
+            </div>
+                <input type="submit" value="Oblicz" />
+        </form>
+    </div>
+</section>
+</body>
+</html>
+
+
